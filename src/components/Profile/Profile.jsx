@@ -1,11 +1,11 @@
 import s from './Profile.module.css';
-import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo";
+import MyPostsContainer from "./MyPosts/MyPostContainer";
 
-const Profile = ({state, dispatch}) => (
+const Profile = ({dispatch}) => (
     <div className={s.content}>
         <ProfileInfo />
-        <MyPosts state={state} dispatch={dispatch} />
+        <MyPostsContainer dispatch={dispatch} />
     </div>
 )
 export default Profile;

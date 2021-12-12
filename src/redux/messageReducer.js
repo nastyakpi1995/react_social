@@ -1,10 +1,25 @@
 const ADD_MESSAGE = 'ADD_MESSAGE';
 
-const messageReducer = (state, action) => {
+const initState = {
+    messages: ['Hi', 'How is your it?', 'YO'],
+    dialogsArray: [
+        {name: 'Sveta',},
+        {name: 'Viktor'},
+        {name: 'Sergay'},
+        {name: 'Sergio'},
+        {name: 'Ivan'},
+        {name: 'Vitaliy'},
+    ],
+}
+
+const messageReducer = (state= initState, action) => {
     switch (action.type) {
         case ADD_MESSAGE: {
-            const res = [...state, action.body]
-            return res
+            const res = [...state.messages, action.body]
+            return {
+                ...state,
+                messages: res
+            }
         }
         default: {
             return state
