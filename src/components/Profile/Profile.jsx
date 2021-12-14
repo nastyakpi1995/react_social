@@ -1,11 +1,14 @@
 import s from './Profile.module.css';
-import ProfileInfo from "./ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostContainer";
+import ProfileInfoContainer from "./ProfileInfoContainer";
 
-const Profile = ({dispatch}) => (
-    <div className={s.content}>
-        <ProfileInfo />
-        <MyPostsContainer dispatch={dispatch} />
-    </div>
-)
+const Profile = () => {
+    return (
+        <div className={s.content}>
+            <ProfileInfoContainer  />
+            <MyPostsContainer />
+        </div>
+    )
+}
+
 export default Profile;
