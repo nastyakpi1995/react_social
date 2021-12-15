@@ -5,7 +5,8 @@ import {connect} from "react-redux";
 
 
 const mapStateToProps = (state) => ({
-    dialogs: state.message
+    dialogs: state.message,
+    isAuth: state.auth.isAuth
 })
 
 const DialogsContainer =  connect(mapStateToProps, {onSave: addNewMessageTextCreator})(Dialogs);

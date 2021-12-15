@@ -6,6 +6,7 @@ import NotFoundRoute from "./components/NotFoundRoute";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Auth/Login";
 
 const  App = () => {
   return (
@@ -17,6 +18,7 @@ const  App = () => {
                     <Route path='/profile/:id' element={<Profile />} />
                     <Route path="/dialogs" element={<DialogsContainer />} />
                     <Route path="/users" element={<UsersContainer />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="*" element={NotFoundRoute} />
                 </Routes>
             </div>

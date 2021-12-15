@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import s from '../Dialogs/Dialogs.module.css';
 import DialogsItem from "./DialogsItem";
 import DialogsMessage from "./DialogsMessage";
+import {Navigate} from "react-router-dom";
 
-const Dialogs = ({dialogs, onSave}) => {
-    const [messageText, setMessageText] = useState('dfds')
+const Dialogs = ({dialogs, onSave, isAuth}) => {
+    const [messageText, setMessageText] = useState('')
     const changeMessageText = (e) => {
         const text = e.target.value
         setMessageText(text)
@@ -13,6 +14,8 @@ const Dialogs = ({dialogs, onSave}) => {
         onSave(messageText)
         setMessageText('')
     }
+    if (isAuth) return (<Navigate to={'/login'} />)
+
 
     return (
         <div className={s.dialogs}>

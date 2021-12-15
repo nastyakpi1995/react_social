@@ -1,7 +1,7 @@
 import React, { useState} from "react";
 import s from './Users.module.css'
 import {NavLink} from "react-router-dom";
-const Users = ({users, toggleFollowUser, followLoaderArray, followUser}) => {
+const Users = ({users, toggleFollowUser, followLoaderArray, toggleFollowUserThunkCreator}) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [startArray, setStartArray] = useState(0)
 
@@ -11,10 +11,7 @@ const Users = ({users, toggleFollowUser, followLoaderArray, followUser}) => {
         setStartArray(idx + 3)
     }
     const followUserClick = (id) => {
-        followUser(id)
-        setTimeout(() => {
-            toggleFollowUser(id)
-        }, 1000)
+        toggleFollowUserThunkCreator(id)
     }
 
     const paginationPage = Math.round(users.length / 3)

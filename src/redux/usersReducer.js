@@ -32,7 +32,6 @@ const usersReducer = (state= initState, action) => {
                 }
                 return el
             })
-            debugger
             return {
                 ...state,
                 users: currentUsers,
@@ -40,7 +39,6 @@ const usersReducer = (state= initState, action) => {
             }
         }
         case FOLLOW_LOADER: {
-            debugger
             return {
                 ...state,
                 followLoaderArray: [...state.followLoaderArray, action.id]
@@ -75,6 +73,13 @@ export const followUserCreator = (id) => ({
     type: FOLLOW_LOADER,
     id
 })
+
+export const toggleFollowUserThunkCreator = (id) => (dispatch) => {
+    dispatch(followUserCreator(id));
+    setTimeout(() => {
+        dispatch(toggleFollowUserCreator(id))
+    }, 1000)
+}
 
 
 export default usersReducer
