@@ -2,9 +2,9 @@ import React from "react";
 import s from '../Dialogs/Dialogs.module.css';
 import {NavLink} from "react-router-dom";
 
-const DialogsItem = ({name, index, key}) => {
+const DialogsItem = ({name, index}) => {
     return (
-        <NavLink key={key} to={`/dialogs/${index + 1}`} className={s.dialog}>{name}</NavLink>
+        <NavLink to={`/dialogs/${index + 1}`} className={s.dialog}>{name}</NavLink>
     )
 }
 

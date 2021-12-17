@@ -1,4 +1,5 @@
 const SET_AUTH_USER_DATE = 'SET_AUTH_USER_DATE';
+const TOGGLE_AUTH = 'TOGGLE_AUTH'
 
 const initState = {
     isAuth: false,
@@ -19,6 +20,12 @@ const authReducer = (state= initState, action) => {
                 isAuth: true
             }
         }
+        case TOGGLE_AUTH: {
+            return {
+                ...state,
+                isAuth: !state.isAuth
+            }
+        }
         default: {
             return state
         }
@@ -29,5 +36,9 @@ export const setAuthUserCreator = (authData) => ({
     type: SET_AUTH_USER_DATE,
     authData
 })
-
+export const toggleAuthCreator = () => {
+    return {
+        type: TOGGLE_AUTH
+    }
+}
 export default authReducer

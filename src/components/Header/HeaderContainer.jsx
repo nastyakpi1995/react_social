@@ -1,18 +1,15 @@
 import Header from "./Header";
-import {useEffect} from "react";
 import {connect} from "react-redux";
-import {setAuthUserCreator} from "../../redux/authReducer";
+import { toggleAuthCreator} from "../../redux/authReducer";
 
-const HeaderContainer = ({setAuthUser, isAuth}) => {
-    useEffect(() => {
-        setAuthUser({})
-    }, [])
+const HeaderContainer = ({ isAuth, toggleAuth}) => {
+
     return (
-        <Header isAuth={isAuth} />
+        <Header isAuth={isAuth} toggleAuth={toggleAuth} />
     )
 }
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth
 })
-export default connect(mapStateToProps, {setAuthUser: setAuthUserCreator})(HeaderContainer)
+export default connect(mapStateToProps, { toggleAuth: toggleAuthCreator})(HeaderContainer)
