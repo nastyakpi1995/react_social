@@ -1,31 +1,18 @@
 import React, { useState} from "react";
 import s from './Users.module.css'
 import {NavLink} from "react-router-dom";
-const Users = ({users, toggleFollowUser, followLoaderArray, toggleFollowUserThunkCreator}) => {
-    const [currentPage, setCurrentPage] = useState(1)
+import Pagination from "./Pagination";
+const Users = ({users, followLoaderArray, toggleFollowUserThunkCreator, dispatch}) => {
     const [startArray, setStartArray] = useState(0)
 
 
-    const editCurrentPage = (idx) => {
-        setCurrentPage(idx)
-        setStartArray(idx + 3)
-    }
     const followUserClick = (id) => {
-        toggleFollowUserThunkCreator(id)
+        dispatch(toggleFollowUserThunkCreator(id))
     }
 
-    const paginationPage = Math.round(users.length / 3)
     return (
         <div>
-            <div className={s.pagination}>
-                {Array(paginationPage).fill('e').map((p, index) => (
-                    <button
-                        onClick={() => editCurrentPage(index)}
-                        className={index === currentPage && s.paginationItem}>
-                        {index + 1}
-                    </button>
-                ))}
-            </div>
+            <Pagination setStartArray={setStartArray} users={users} />
             {users.slice(startArray, startArray + 3).map((user) => (
                 <div key={user.id}>
                     <NavLink to={`/profile/${user.id}`} >
@@ -34,7 +21,7 @@ const Users = ({users, toggleFollowUser, followLoaderArray, toggleFollowUserThun
                         </div>
                     </NavLink>
                     <div>
-                        {user.isFollow ? <button disabled={followLoaderArray.some(el => user.id === el)} onClick={() => followUserClick(user.id)}>unfollow</button> : <button onClick={() => toggleFollowUser(user.id)}>follow</button>}
+                        {user.isFollow ? <button disabled={followLoaderArray.some(el => user.id === el)} onClick={() => followUserClick(user.id)}>unfollow</button> : <button onClick={() => followUserClick(user.id)}>follow</button>}
                     </div>
                     <div>
                         <div>{user.fullName}</div>

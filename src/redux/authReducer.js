@@ -2,7 +2,7 @@ const SET_AUTH_USER_DATE = 'SET_AUTH_USER_DATE';
 const TOGGLE_AUTH = 'TOGGLE_AUTH'
 
 const initState = {
-    isAuth: false,
+    isAuth: true,
     authData: {
         userId: 0,
         login: '',

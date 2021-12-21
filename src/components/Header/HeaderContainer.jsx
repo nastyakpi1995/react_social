@@ -1,6 +1,7 @@
 import Header from "./Header";
 import {connect} from "react-redux";
 import { toggleAuthCreator} from "../../redux/authReducer";
+import {getIsAuthSelect} from "../../redux/selects/auth";
 
 const HeaderContainer = ({ isAuth, toggleAuth}) => {
 
@@ -10,6 +11,6 @@ const HeaderContainer = ({ isAuth, toggleAuth}) => {
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: getIsAuthSelect(state)
 })
 export default connect(mapStateToProps, { toggleAuth: toggleAuthCreator})(HeaderContainer)

@@ -4,12 +4,15 @@ import {Input} from "../common/controlsForm/TextArea";
 import {required} from "../../utils/validators";
 import {setAuthUserCreator} from "../../redux/authReducer";
 import {connect} from "react-redux";
+import {Navigate} from "react-router-dom";
+import {getIsAuthSelect} from "../../redux/selects/auth";
 
-let Login = (props, {setAuthUser}) => {
-
+let Login = ({setAuthUser, isAuth}) => {
     const onSubmit = (values) => {
         setAuthUser(values)
-        console.log(values)
+    }
+    if (isAuth) {
+        return <Navigate to={'/profile/1'} />
     }
     return (
         <div>
@@ -44,7 +47,7 @@ const LoginReduxForm = reduxForm({
 })(LoginForm)
 
 const mapStateToProps = (state) => ({
-
+    isAuth: getIsAuthSelect(state)
 })
 
 export default connect(mapStateToProps, {setAuthUser: setAuthUserCreator})(Login)

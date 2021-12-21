@@ -69,7 +69,7 @@ export const setUserProfileCreator = (id) => ({
     type: SET_USER_PROFILE,
     id
 })
-export const followUserCreator = (id) => ({
+ const followUserCreator = (id) => ({
     type: FOLLOW_LOADER,
     id
 })

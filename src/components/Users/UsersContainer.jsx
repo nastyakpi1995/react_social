@@ -1,27 +1,32 @@
 import React, {useEffect} from "react";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Users from "./Users";
 import {
-    followUserCreator,
     setUsersCreator,
     toggleFollowUserCreator,
     toggleFollowUserThunkCreator
 } from "../../redux/usersReducer";
+import {getFollowLoaderArraySelect, getUsersSelect} from "../../redux/selects/users";
 
-const mapStateToProps = (state) => ({
-    users: state.users.users,
-    followLoaderArray: state.users.followLoaderArray
-})
+const UsersContainer = () => {
+    const users = useSelector(state => {
+        debugger
+        return getUsersSelect(state)
+    })
+    const followLoaderArray = useSelector(state => {
+        return getFollowLoaderArraySelect(state)
+    })
+    const dispatch = useDispatch()
 
-const UsersContainer = ({setUsers, toggleFollowUser, users, followLoaderArray, followUser, toggleFollowUserThunk}) => {
     useEffect(() => {
-        setUsers()
-    }, [])
+        dispatch(setUsersCreator())
+    }, [dispatch])
     return (
-        <Users toggleFollowUser={toggleFollowUser}
+        <Users toggleFollowUser={toggleFollowUserCreator}
+               dispatch={dispatch}
                users={users}
-               toggleFollowUserThunkCreator={toggleFollowUserThunk}
+               toggleFollowUserThunkCreator={toggleFollowUserThunkCreator}
                followLoaderArray={followLoaderArray}/>
     )
 }
-export default connect(mapStateToProps, {setUsers: setUsersCreator, toggleFollowUserThunk: toggleFollowUserThunkCreator, toggleFollowUser: toggleFollowUserCreator, followUser: followUserCreator})(UsersContainer);
+export default UsersContainer
